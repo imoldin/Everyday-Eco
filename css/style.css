@@ -1,0 +1,367 @@
+:root {
+  /* page background, menu icon bars, menu link text, top gradient end, table borders */
+  --main-background: #F4F2E8;
+  /* headings, links, header bar, menu panel, buttons, light button text, callout, gallery frame, table head, footer */
+  --dark-yellow: #908c12;
+  /* menu link hover and current page, light button hover, card border, day label, table row hover */
+  --yellow: #d1d140;
+  /* page text, menu link hover text, button hover background, light button hover text */
+  --text: #000000;
+  /* site name, button text, light button background, callout text, card background, table background, table head text, footer text */
+  --white: #FFFFFF;
+  /* extra background color, striped table rows, top gradient start */
+  --background: #b9b99a4d;
+}
+
+
+
+* { box-sizing: border-box; }
+
+/* body - removes page gap, changed page color, text colour, Arial font, line-height 1.6 line spacing */
+body {
+  margin: 0;
+  background-color: var(--main-background);
+  color: var(--text);
+  font-family: Arial;
+  line-height: 1.6;
+}
+
+/* h1, h2, h3 - Georgia font, dark yellow color, tight line spacing */
+h1, h2, h3 {
+  font-family: Georgia;
+  color: var(--dark-yellow);
+  line-height: 1.2;
+}
+
+/* heading sizes */
+h1 { font-size: 2.4rem; }
+h2 { font-size: 1.8rem; }
+
+/* links color - dark yellow instead of standard blue color */
+a { color: var(--dark-yellow); }
+
+/* images - never wider than their box, auto height */
+img { max-width: 100%; height: auto; }
+
+/* section spacing - padding 40px top and bottom and 0 in left and right */
+.block, .section-alt, .image-section { padding: 40px 0; }
+
+/* second color of background for section-alt (another color for style and variety)   */
+.section-alt { background-color: var(--background); }
+
+/* centred column - limits the page width and keeps all in the middle */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+
+
+/* header bar - relative (the menu panel sits under it in the phone version), flex row, items centred vertically,
+space-between puts the site name on the left and the menu button on the right on a phone, dark yellow background */
+.site-header {
+  justify-content: space-between;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  background-color: var(--dark-yellow);
+}
+
+/* site name - white Georgia bold text, font-size 1.3rem, letter-spacing 2px */
+.site-name {
+  margin: 0;
+  color: var(--white);
+  font-family: Georgia;
+  font-size: 1.3rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* hidden checkbox for the phone menu - absolute, size reduced to 2px x 2px so the menu won't open by accident (missed tap for example) */
+.nav-toggle {
+  position: absolute;
+  opacity: 0;
+  width: 2px;
+  height: 2px;
+}
+
+/* menu icon on phones - 24px x 3px lines, 5px space between them, transition animates opening and closing */
+.nav-label span {
+  display: block;
+  width: 24px;
+  height: 3px;
+  margin: 5px 0;
+  background-color: var(--main-background);
+  transition: transform 0.25s, opacity 0.25s;
+}
+
+/* phone menu panel - absolute, under the header, full width, max-height 0 keeps it closed */
+.site-nav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: calc(100vh - 100%);
+  background-color: var(--dark-yellow);
+  overflow: hidden;
+  max-height: 0;
+}
+
+/* menu list - no bullets, no default space */
+.nav-list { list-style: none; margin: 0; padding: 0; }
+
+/* menu links - fill the row, padding, rounded corners, no underline, smooth color change */
+.nav-list a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 4px;
+  color: var(--main-background);
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+/* menu link on hover and current page - yellow background, normal text color */
+.nav-list a:hover,
+.nav-list .current {
+  background-color: var(--yellow);
+  color: var(--text);
+}
+
+/* menu open - when the checkbox is ticked the panel gets padding and full height */
+.nav-toggle:checked ~ .site-nav { padding: 8px; max-height: calc(100vh - 100%); }
+
+/* menu icon becomes an X when ticked - bars 1 and 3 turn 45 degrees, bar 2 is hidden */
+.nav-toggle:checked + .nav-label span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.nav-toggle:checked + .nav-label span:nth-child(2) { opacity: 0; }
+.nav-toggle:checked + .nav-label span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+
+/* buttons on the home page and the Action Guide page - padding, border-radius 24px (rounded), dark yellow background,
+white bold text, no underline, smooth color and size change */
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 24px;
+  background-color: var(--dark-yellow);
+  color: var(--white);
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+/* button hover - dark background and 10% bigger (scale 1.1) */
+.btn:hover { background-color: var(--text); transform: scale(1.1); }
+
+/* light button - white background with dark yellow text, yellow on hover. Used in the dark callout boxes on the home page and the Action Guide page */
+.btn-light { background-color: var(--white); color: var(--dark-yellow); }
+.btn-light:hover { background-color: var(--yellow); color: var(--text); }
+
+
+
+
+/* top part of every page with a picture - the background goes from a light color (top) to the page color (bottom) */
+.image-section { background-image: linear-gradient(to bottom, var(--background), var(--main-background)); }
+
+/* two parts side by side - grid, 24px gap, centred vertically (one column on phones) */
+.image-inner, .split {
+  display: grid;
+  gap: 24px;
+  align-items: center;
+}
+
+/* callout box - 24px padding, rounded corners, dark yellow background, white text */
+.callout {
+  padding: 24px;
+  border-radius: 16px;
+  background-color: var(--dark-yellow);
+  color: var(--white);
+}
+
+/* callout heading - white */
+.callout h2 { color: var(--white); }
+
+
+/* card grid - as many columns as fit, each at least 240px, equal space for each column) */
+.grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+/* cards - white box, 20px padding, 2px yellow border, rounded corners, smooth hover movement */
+.card {
+  padding: 20px;
+  background-color: var(--white);
+  border: 2px solid var(--yellow);
+  border-radius: 16px;
+  transition: transform 0.3s;
+}
+
+/* card hover - moves up 4px */
+.card:hover { transform: translateY(-4px); }
+
+/* day labels for Recycling and Action Guide pages - small yellow pill with bold text */
+.day-label {
+  display: inline-block;
+  padding: 0 12px;
+  border-radius: 12px;
+  background-color: var(--yellow);
+  font-weight: bold;
+}
+
+
+
+/* photos at the top of all pages - full width, 4:3 shape, object-fit cover crops without stretching, rounded corners */
+.photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+
+/* gallery grid - columns of at least 140px, 8px gap */
+.gallery {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+/* gallery picture - full width, 3px frame, square (1 / 1), cropped to fit */
+.gallery-item {
+  width: 100%;
+  border: 3px solid var(--dark-yellow);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+
+
+/* mask fade - picture is solid until 45% of the height, then fades out at the bottom */
+.mask-fade { mask-image: linear-gradient(to bottom, black 45%, transparent); }
+
+/* mask circle - picture is solid in the middle and fades out towards the edges (soft circle) */
+.mask-circle { mask-image: radial-gradient(circle, black 55%, transparent 70%); }
+
+
+/* top photos on the home and Recycling pages - photo mixed with light yellow (blending) */
+.blend-photo, .blend-recycling {
+  background-size: cover;
+  background-position: center;
+  background-color: #ffea0025;
+  background-blend-mode: luminosity;
+}
+
+/* blend photo - home page picture */
+.blend-photo { background-image: url("../images/homepage.jpg"); }
+/* blend photo - recycling page picture */
+.blend-recycling { background-image: url("../images/recyclingBins.jpg"); }
+
+
+
+/* row of cards - flex row, 16px gap, scroll bar only if they do not fit */
+.cards-row {
+  display: flex;
+  gap: 16px;
+  overflow: auto;
+}
+
+/* cards in the row - at least 200px wide */
+.cards-row .card { min-width: 200px; }
+
+
+
+
+/* table wrapper - scroll bar if the table is too wide for a phone */
+.table-wrap { overflow: auto; }
+
+/* table - full width, at least 600px, borders joined into a single lines, white background */
+table {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+  background-color: var(--white);
+}
+
+/* table title - padding, bold, text on the left */
+caption { padding: 12px; font-weight: bold; text-align: left; }
+
+/* all table cells - padding 12px, text on the left, thin black 1px border */
+th, td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid var(--text);
+}
+
+/* table head row - dark yellow, white text */
+thead th { background-color: var(--dark-yellow); color: var(--white); }
+
+/* striped rows - every 2nd row have different background color */
+tbody tr:nth-child(even) { background-color: var(--background); }
+
+/* table rows - smooth color change */
+tbody tr { transition: background-color 0.2s; }
+
+/* table row hover - yellow */
+tbody tr:hover { background-color: var(--yellow); }
+
+
+
+
+/* footer - padding 16px top, 0 right, 8px bottom, 0 left. Dark yellow, white text */
+.site-footer {
+  padding: 16px 0 8px 0;
+  background-color: var(--dark-yellow);
+  color: var(--white);
+}
+
+/* footer links - white */
+.site-footer a { color: var(--white); }
+
+/* footer row - flex, wraps if no space, 24px gap, one part left and one right (space-between) */
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: space-between;
+}
+
+/* footer brand - no margin, Georgia, 1.4rem font size */
+.footer-brand { margin: 0; font-family: Georgia; font-size: 1.4rem; }
+
+/* footer link list - no bullets, no default space */
+.footer-nav ul { list-style: none; margin: 0; padding: 0; }
+
+/* copyright line - 12px space above and below, small text (0.9rem font size) */
+.copyright {
+  margin: 12px 0;
+  font-size: 0.9rem;
+}
+
+
+
+/* screens 600px and wider - menu button hidden, menu panel becomes
+a normal bar on the right (static, auto height, no limits), links in a row, bigger h1 */
+@media (min-width: 600px) {
+  .nav-label, .nav-toggle { display: none; }
+  .site-nav,
+  .nav-toggle:checked ~ .site-nav {
+    position: static;
+    height: auto;
+    max-height: none;
+    padding: 0;
+    overflow: visible;
+    margin-left: auto;
+  }
+  .nav-list { display: flex; gap: 4px; }
+  .footer-nav ul { display: flex; gap: 16px; }
+  h1 { font-size: 3rem; }
+}
+
+/* screens 900px and wider - top block and two-part sections get 2 equal columns (1fr 1fr), 48px gap */
+@media (min-width: 900px) {
+  .image-inner, .split { grid-template-columns: 1fr 1fr; gap: 48px; }
+}
